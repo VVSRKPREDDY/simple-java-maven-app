@@ -1,0 +1,22 @@
+name: Sample java application
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v6.0.2
+      - name: install java
+        uses: actions/setup-java@v5.2.0
+        with:
+          java-version: 17
+          distribution: microsoft
+      - name: Build with maven
+        run: |
+          mvn clean install -DskipTests
+          mkdir javaapp && cp target/* .jar javaapp
+      - name: upload a build artifact
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: build
+          path: javaapp
