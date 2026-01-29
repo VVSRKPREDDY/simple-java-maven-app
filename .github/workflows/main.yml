@@ -9,7 +9,7 @@ jobs:
       - name: install java
         uses: actions/setup-java@v5.2.0
         with:
-          java-version: 17
+          java-version: 21
           distribution: microsoft
       - name: Build with maven
         run: |
